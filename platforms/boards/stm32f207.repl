@@ -19,8 +19,6 @@ dsp: SPI.ADAU1452 @ spi_mux3 0x0
 
 // dsp chip-select
 gpioPortA: { 15 -> spi_mux3@0 }
-// cs8422 nRST
-gpioPortD: { 8 -> asrc_cs8422@0 }
 // dsp nRESET
 gpioPortE: { 13 -> dsp@31 }
 
