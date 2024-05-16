@@ -1,0 +1,46 @@
+// STM32F207IG
+using "platforms/cpus/stm32f207ig.repl"
+
+button: Miscellaneous.Button @ gpioPortG 15
+    -> gpioPortG@15
+//    IRQ -> gpioPortG@15
+//    invert: true
+
+// 16Mbit SRAM IS61WV102416BLL-10MLI
+// Shares same I/O as CAN1 so JP3 and JP10 on real H/W must be open
+u6_sram: Memory.MappedMemory @ sysbus 0x64000000
+    size: 0x00200000
+
+// SPI
+
+spi_mux3: SPI.SPIMultiplexer @ spi3 { init: { SetActiveLow 0; SetActiveLow 1 } }
+
+dsp: SPI.ADAU1452 @ spi_mux3 0x0
+
+// dsp chip-select
+gpioPortA: { 15 -> spi_mux3@0 }
+// cs8422 nRST
+gpioPortD: { 8 -> asrc_cs8422@0 }
+// dsp nRESET
+gpioPortE: { 13 -> dsp@31 }
+
+spi_mux1: SPI.SPIMultiplexer @ spi1 { init: { SetActiveLow 0; SetActiveLow 1 } }
+
+extflash: SPI.Macronix_MX25R @ spi_mux1 0x0
+    underlyingMemory: extflash_mem
+
+gpioPortA: { 4 -> spi_mux1@0 }
+
+// CONSIDER: The following is not strictly "correct" since the SPI
+// flash device is NOT actually memory mapped. We would need a different
+// SPI access model with internal memory only. Unfortunately we cannot
+// just use Memory.ArrayMemory WITHOUT a sysbus mapping since the
+// SPI.Macronix_MX25R model relies on MappedMemory.
+//
+// MX25R1635F 16Mbit (2MB)
+// eCos PLF source logically maps the m25pxx_flash_device to
+// 0x3E000000 for flash API access
+extflash_mem: Memory.MappedMemory @ {
+        sysbus 0x3E000000
+    }
+    size: 0x200000
