@@ -3,6 +3,7 @@ Suite Setup                   Setup
 Suite Teardown                Teardown
 Test Setup                    Reset Emulation
 Test Teardown                 Test Teardown
+Test Timeout                  1 minute
 Resource                      ${RENODEKEYWORDS}
 
 *** Variables ***
@@ -20,4 +21,4 @@ Load Script
 Should Run Test Case
     Load Script
     Start Emulation
-    Wait For Line On Uart     EXIT:<done>               timeout=10
+    Wait For Line On Uart     EXIT:<done>
