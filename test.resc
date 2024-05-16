@@ -15,7 +15,7 @@ $logfile ?= $ORIGIN/artifacts/renode.log
 
 $app ?= @ecos_stm32f207_spi_flash
 
-showAnalyzer sysbus.uart4
+showAnalyzer sysbus.usart6
 
 : Since the reset macro is executed automatically by renode on a CPU
 : reset we use startofday for the initial test setup, and allow reset
