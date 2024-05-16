@@ -20,4 +20,4 @@ Load Script
 Should Run Test Case
     Load Script
     Start Emulation
-    Wait For Line On Uart       EXIT:<done>		timeout=10
+    Wait For Line On Uart     EXIT:<done>               timeout=10

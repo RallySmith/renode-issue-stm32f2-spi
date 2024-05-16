@@ -6,3 +6,10 @@ platform using SPI based flash and DSP device.
 Currently this is a **mirror** (and not a fork) of the
 renode-issue-reproduction-template because github limits users to a
 single fork.
+
+## branches
+
+| Branch  | Description
+|:--------|:-------------------------------------------------------------------
+| `main`  | test executes against latest and stable renode worlds
+| `fixed` | updated models to allow successful execution of the application
