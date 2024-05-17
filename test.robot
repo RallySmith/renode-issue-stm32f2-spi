@@ -22,4 +22,5 @@ Should Run Test Case
     Load Script
     Start Emulation
     Wait For Line On Uart     INFO:<SPI Access Test>
-    Wait For Log Entry        [ERROR] cpu: CPU abort [PC=0x74736554]: Trying to execute code outside RAM or ROM at 0x74736554.
+    Wait For Line On Uart     INFO:<ADAU1452: CoreStatus: 0x0000>
+    Wait For Line On Uart     EXIT:<done>

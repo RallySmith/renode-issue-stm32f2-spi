@@ -8,10 +8,12 @@ mach create $name
 path add $ORIGIN
 
 include @platforms/devices/ADAU1452.cs
+include @platforms/peripherals/STM32SPI_Fixed.cs
+include @platforms/peripherals/STM32DMA_Fixed.cs
 
 machine LoadPlatformDescription $ORIGIN/platforms/boards/stm32f207.repl
 
-$logfile ?= @artifacts/renode.log
+$logfile ?= $ORIGIN/artifacts/renode.log
 
 $app ?= @ecos_stm32f207_spi_flash
 
