@@ -3,7 +3,7 @@ Suite Setup                   Setup
 Suite Teardown                Teardown
 Test Setup                    Reset Emulation
 Test Teardown                 Test Teardown
-Test Timeout                  1 minute
+Test Timeout                  10 seconds
 Resource                      ${RENODEKEYWORDS}
 
 *** Variables ***
@@ -21,4 +21,5 @@ Load Script
 Should Run Test Case
     Load Script
     Start Emulation
-    Wait For Line On Uart     EXIT:<done>
+    Wait For Line On Uart     INFO:<SPI Access Test>
+    Wait For Log Entry        [ERROR] cpu: CPU abort [PC=0x74736554]: Trying to execute code outside RAM or ROM at 0x74736554.

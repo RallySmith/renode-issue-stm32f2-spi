@@ -11,7 +11,7 @@ include @platforms/devices/ADAU1452.cs
 
 machine LoadPlatformDescription $ORIGIN/platforms/boards/stm32f207.repl
 
-$logfile ?= $ORIGIN/artifacts/renode.log
+$logfile ?= @artifacts/renode.log
 
 $app ?= @ecos_stm32f207_spi_flash
 
@@ -34,7 +34,6 @@ macro reset
     set flash_pc `sysbus ReadDoubleWord 0x08000004`
     cpu SP $flash_sp
     cpu PC $flash_pc
-    runMacro $feedadc
 """
 
 runMacro $startofday
