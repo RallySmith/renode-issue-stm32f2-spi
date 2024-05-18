@@ -15,11 +15,11 @@ ${UART}                       sysbus.usart6
 Load Script
     Execute Script            ${SCRIPT}
     Create Terminal Tester    ${UART}
-
+    Create Log Tester         1
 
 *** Test Cases ***
 Should Run Test Case
     Load Script
     Start Emulation
     Wait For Line On Uart     INFO:<SPI Access Test>
-    Wait For Log Entry        [ERROR] cpu: CPU abort [PC=0x74736554]: Trying to execute code outside RAM or ROM at 0x74736554.
+    Should Not Be In Log      cpu: CPU abort [PC=0x74736554]: Trying to execute code outside RAM or ROM at 0x74736554.
