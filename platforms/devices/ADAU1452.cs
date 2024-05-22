@@ -54,8 +54,7 @@ namespace Antmicro.Renode.Peripherals.SPI
                 this.Log(LogLevel.Noisy, "Chip Select is deasserted");
                 FinishTransmission();
             }
-            // Not strictly needed for senn_kh750_dsp since DSP_RST
-            // signal connected to U31#2 nRESET
+
             if ((31 == number) && !value)
             {
                 Reset();
